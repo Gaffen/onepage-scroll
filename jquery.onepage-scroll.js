@@ -105,7 +105,18 @@
           var toppos = (el.height()/100)*pos;
           $(this).animate({top: toppos+'px'},settings.animationTime);
         }
-    	} else{
+    	} else if($('html').hasClass('ie9')){
+        $(this).css({
+          "-webkit-transform": ( settings.direction == 'horizontal' ) ? "translate(" + pos + "%, 0)" : "translate(0, " + pos + "%)",
+         "-webkit-transition": "all " + settings.animationTime + "ms " + settings.easing,
+         "-moz-transform": ( settings.direction == 'horizontal' ) ? "translate(" + pos + "%, 0)" : "translate(0, " + pos + "%)",
+         "-moz-transition": "all " + settings.animationTime + "ms " + settings.easing,
+         "-ms-transform": ( settings.direction == 'horizontal' ) ? "translate(" + pos + "%, 0)" : "translate(0, " + pos + "%)",
+         "-ms-transition": "all " + settings.animationTime + "ms " + settings.easing,
+         "transform": ( settings.direction == 'horizontal' ) ? "translate(" + pos + "%, 0)" : "translate(0, " + pos + "%)",
+         "transition": "all " + settings.animationTime + "ms " + settings.easing
+        });
+      } else {
     	  $(this).css({
     	    "-webkit-transform": ( settings.direction == 'horizontal' ) ? "translate3d(" + pos + "%, 0, 0)" : "translate3d(0, " + pos + "%, 0)",
          "-webkit-transition": "all " + settings.animationTime + "ms " + settings.easing,
